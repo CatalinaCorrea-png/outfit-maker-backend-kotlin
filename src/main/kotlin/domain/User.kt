@@ -19,7 +19,7 @@ class User(
     var email: String = "",
 
     @Column(name = "display_name", nullable = false)
-    var displayName: String = "",
+    var name: String = "",
 
     @Column(name = "avatar_url")
     var avatarUrl: String = "",
@@ -33,6 +33,8 @@ class User(
 
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL])
     val outfits: MutableList<Outfit> = mutableListOf(),
+
+    var password: String = "",
 ) : RepositoryElement {
 
     @Id
