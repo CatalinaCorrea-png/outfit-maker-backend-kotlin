@@ -1,6 +1,13 @@
 server:
   port: 8080
 
+jwt:
+  # HS256 necesita minimo 256 bits (32 chars). En la nube se pisa con la env var JWT_KEY.
+  key: ${JWT_KEY:dev-secret-outfitmaker-cambiar-en-produccion-32bytes-min}
+  # milisegundos
+  access-token-expiration: ${JWT_ACCESS_EXPIRATION:900000}      # 15 minutos
+  refresh-token-expiration: ${JWT_REFRESH_EXPIRATION:604800000} # 7 dias
+
 spring:
   #   base de datos posta
   datasource:
