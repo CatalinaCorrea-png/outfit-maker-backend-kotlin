@@ -18,7 +18,7 @@ class User(
     @Column(unique = true, nullable = false)
     var email: String = "",
 
-    @Column(name = "display_name", nullable = false)
+    @Column(name = "name", nullable = false)
     var name: String = "",
 
     @Column(name = "avatar_url")
