@@ -30,7 +30,7 @@ class UserService(
             userCopy.validate()
             return userRepository.save(userCopy)
         } else {
-            throw ConflictException("Email '${user.email}' ya se encuentra registrado")
+            throw ConflictException("USER_EMAIL_ALREADY_EXISTS", "Email '${user.email}' ya se encuentra registrado")
         }
     }
 
@@ -39,7 +39,7 @@ class UserService(
         val persistedUser = userRepository
             .findByEmail(email)
             .orElseThrow {
-                NotFoundException("No se encuentra un usuario registrado con este email: $email")
+                NotFoundException("USER_NOT_FOUND", "No se encuentra un usuario registrado con este email: $email")
             }
         return persistedUser
     }

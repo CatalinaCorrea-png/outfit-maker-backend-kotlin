@@ -32,7 +32,7 @@ class AuthService(
                 )
             )
         } catch (ex: BadCredentialsException) {
-            throw BusinessException("Credenciales invalidas")
+            throw BusinessException("AUTH_INVALID_CREDENTIALS", "Credenciales invalidas")
         }
 
         val user = userDetailsService.loadUserByUsername(request.email)

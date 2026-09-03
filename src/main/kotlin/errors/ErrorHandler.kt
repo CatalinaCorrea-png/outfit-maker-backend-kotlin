@@ -18,6 +18,7 @@ class GlobalExceptionHandler {
     fun handleNotFoundException(ex: NotFoundException): ResponseEntity<Map<String, Any>> {
         val errorResponse = mapOf(
             "status" to HttpStatus.NOT_FOUND.value(),
+            "code" to ex.code,
             "error" to "Recurso no encontrado",
             "detail" to (ex.message ?: "El elemento solicitado no existe."),
             "timestamp" to ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
@@ -30,6 +31,7 @@ class GlobalExceptionHandler {
     fun handleConflictException(ex: ConflictException): ResponseEntity<Map<String, Any>> {
         val errorResponse = mapOf(
             "status" to HttpStatus.CONFLICT.value(),
+            "code" to ex.code,
             "error" to "Conflicto en la solicitud",
             "detail" to (ex.message ?: "La operación no se puede completar debido a un conflicto en los datos."),
             "timestamp" to ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
@@ -43,6 +45,7 @@ class GlobalExceptionHandler {
     fun handleBusinessException(ex: BusinessException): ResponseEntity<Map<String, Any>> {
         val errorResponse = mapOf(
             "status" to HttpStatus.BAD_REQUEST.value(),
+            "code" to ex.code,
             "error" to "Regla de negocio no cumplida",
             "detail" to (ex.message ?: "La solicitud es incorrecta o no cumple una regla de negocio."),
             "timestamp" to ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
@@ -56,6 +59,7 @@ class GlobalExceptionHandler {
     fun handleInternalException(ex: InternalException): ResponseEntity<Map<String, Any>> {
         val errorResponse = mapOf(
             "status" to HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            "code" to ex.code,
             "error" to "Error interno del servidor",
             "detail" to (ex.message ?: "Ocurrió un error inesperado en el servidor."),
             "timestamp" to ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
@@ -76,6 +80,7 @@ class GlobalExceptionHandler {
 
         val errorResponse = mapOf(
             "status" to HttpStatus.BAD_REQUEST.value(),
+            "code" to "REQUEST_MALFORMED",
             "error" to "Error en el formato del JSON",
             "detail" to detail,
             "timestamp" to ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
@@ -88,6 +93,7 @@ class GlobalExceptionHandler {
     fun handleBadCredentials(ex: BadCredentialsException): ResponseEntity<Map<String, Any>> {
         val errorResponse = mapOf(
             "status" to HttpStatus.UNAUTHORIZED.value(),
+            "code" to "AUTH_INVALID_CREDENTIALS",
             "error" to "Credenciales inválidas",
             "detail" to "El email o la contraseña son incorrectos.",
             "timestamp" to ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)
