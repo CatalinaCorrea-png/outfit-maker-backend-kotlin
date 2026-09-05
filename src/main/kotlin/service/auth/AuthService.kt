@@ -44,7 +44,7 @@ class AuthService(
 
         refreshTokenRepository.save(refreshToken, user)
 
-        return AuthenticationResponse(accessToken, refreshToken, expirationTime, userOK.id.toString())
+        return AuthenticationResponse(accessToken, refreshToken, expirationTime, userOK.id.toString(), userOK.name)
     }
 
     fun refreshAccessToken(token: String): Pair<String, String>? {

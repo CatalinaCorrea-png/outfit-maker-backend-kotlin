@@ -11,7 +11,8 @@ data class AuthenticationResponse(
     val accessToken: String,
     val refreshToken: String,
     val expirationTime:  Long,
-    val id: String // pasamos esto por que si no tenemos que cambiar toda la logica en el front y los endpoints
+    val id: String,
+    val name: String
 ) {}
 
 data class AuthResponse(
