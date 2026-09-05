@@ -15,12 +15,8 @@ data class GarmentFilters(
     val category: String? = null,
     val name: String? = null,
     val brand: String? = null,
-    val primaryColor: String? = null,
-    val secondaryColor: String? = null,
     val pattern: Pattern? = null,
-    val material: String? = null,
     val formality: Int? = null,
-    val fit: Fit? = null,
     val season: Season? = null,
     val active: Boolean? = null,
     // paging & sorting
