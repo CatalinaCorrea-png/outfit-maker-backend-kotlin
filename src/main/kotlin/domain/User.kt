@@ -10,7 +10,6 @@ import jakarta.persistence.Id
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import java.time.LocalDate
-import java.util.UUID
 
 @Entity
 @Table(name = "users")
@@ -39,7 +38,7 @@ class User(
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    override var id: UUID = UUID.randomUUID()
+    override var id: String? = null
 
     fun addGarment(garment: Garment) {
         garments.add(garment)

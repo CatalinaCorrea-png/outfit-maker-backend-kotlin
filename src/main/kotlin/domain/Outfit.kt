@@ -15,7 +15,6 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import java.time.LocalDate
-import java.util.UUID
 
 @Entity
 @Table(name = "outfits")
@@ -58,7 +57,7 @@ class Outfit(
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    override var id: UUID = UUID.randomUUID()
+    override var id: String? = null
 
     fun addOutfitItem(item: OutfitItem) {
         items.add(item)
@@ -101,7 +100,7 @@ class OutfitItem (
 ) : RepositoryElement {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    override var id: UUID = UUID.randomUUID()
+    override var id: String? = null
 
     override fun validate() {
         TODO("Not yet implemented")

@@ -1,6 +1,8 @@
 package ar.outfitmaker.domain
 
 import ar.outfitmaker.repository.RepositoryElement
+import com.fasterxml.jackson.annotation.JsonIgnore
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -11,9 +13,9 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import java.time.LocalDate
-import java.util.UUID
 
 enum class Pattern {
     SOLID,
@@ -60,7 +62,7 @@ class Garment(
     @Column(name = "primary_color", nullable = false)
     var primaryColor: String = "",
 
-    @Column(name = "secondary_color")
+    @Column(name = "secondary_color", nullable = false)
     var secondaryColor: String = "",
 
     @Enumerated(EnumType.STRING)
@@ -92,12 +94,24 @@ class Garment(
     @Column(name = "created_at", nullable = false, updatable = false)
     val createdAt: LocalDate = LocalDate.now(),
 
+    @OneToMany(mappedBy = "garment", cascade = [CascadeType.ALL], orphanRemoval = true)
+    val images: MutableList<GarmentImage> = mutableListOf(),
+
     ) : RepositoryElement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    override var id: UUID = UUID.randomUUID()
+    override var id: String? = null
 
+    fun addImage(image: GarmentImage) {
+        images.add(image)
+    }
+
+    fun deleteImage(image: GarmentImage) {
+        images.remove(image)
+    }
+
+    fun primaryImage(): GarmentImage? = images.minByOrNull { it.sortOrder }
 
     override fun validate() {
         TODO("Not yet implemented")
@@ -107,7 +121,7 @@ class Garment(
 @Entity
 @Table(name = "garment_images")
 class GarmentImage(
-
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "garment_id", nullable = false)
     val garment: Garment,
@@ -116,16 +130,13 @@ class GarmentImage(
     @Column(name = "image_url", nullable = false)
     val imageUrl: String,
 
-    @Column(name = "is_primary", nullable = false)
-    val isPrimary: Boolean = false,
-
     @Column(name = "sort_order", nullable = false)
     val sortOrder: Int = 0,
 
 ) : RepositoryElement {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    override var id: UUID = UUID.randomUUID()
+    override var id: String? = null
 
 
     override fun validate() {

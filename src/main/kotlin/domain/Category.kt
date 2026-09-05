@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
-import java.util.UUID
 
 enum class Slot {
     UPPER,
@@ -33,7 +32,7 @@ class Category(
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    override var id: UUID = UUID.randomUUID()
+    override var id: String? = null
 
 
     override fun validate() {

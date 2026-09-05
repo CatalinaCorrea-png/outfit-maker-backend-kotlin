@@ -9,7 +9,6 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
-import java.util.UUID
 
 enum class TagType {
     OCCASION,
@@ -30,7 +29,7 @@ class Tag(
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    override var id: UUID = UUID.randomUUID()
+    override var id: String? = null
 
     override fun validate() {
         TODO("Not yet implemented")
