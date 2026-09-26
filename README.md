@@ -5,8 +5,8 @@
 > **[outfit-maker-backend-java](https://github.com/CatalinaCorrea-png/outfit-maker-backend-java)**.
 >
 > Este repo queda archivado como referencia. En la migración se revisó cada decisión y se
-> corrigieron bugs que venían de acá: un endpoint que serializaba las entidades directo (con el
-> hash de la contraseña incluido) y un refresh token vencido que devolvía 500 en vez de 401,
+> corrigieron problemas que venían de acá: el endpoint de outfits, que había quedado sin terminar,
+> devolvía entidades JPA en vez de DTOs, y un refresh token vencido respondía 500 en vez de 401,
 > entre otros. La versión en Java suma además tests en tres niveles y CI.
 
 API de **Outfit Maker**, un armario virtual para cargar tus prendas y combinarlas en outfits.
