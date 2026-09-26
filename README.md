@@ -1,9 +1,18 @@
-# 👗 Outfit Maker — Backend
+# 👗 Outfit Maker — Backend (prototipo en Kotlin)
+
+> [!IMPORTANT]
+> **Este prototipo se migró a Java 21 + Spring Boot 4.** El desarrollo sigue en
+> **[outfit-maker-backend-java](https://github.com/CatalinaCorrea-png/outfit-maker-backend-java)**.
+>
+> Este repo queda archivado como referencia. En la migración se revisó cada decisión y se
+> corrigieron bugs que venían de acá: un endpoint que serializaba las entidades directo (con el
+> hash de la contraseña incluido) y un refresh token vencido que devolvía 500 en vez de 401,
+> entre otros. La versión en Java suma además tests en tres niveles y CI.
 
 API de **Outfit Maker**, un armario virtual para cargar tus prendas y combinarlas en outfits.
 El frontend está en [outfit-maker-frontend-react-ts](https://github.com/CatalinaCorrea-png/outfit-maker-frontend-react-ts).
 
-![Estado](https://img.shields.io/badge/estado-en_desarrollo-F59E0B?style=flat-square)
+![Estado](https://img.shields.io/badge/estado-archivado-6B7280?style=flat-square)
 ![Kotlin](https://img.shields.io/badge/Kotlin_2.3-7F52FF?style=flat-square&logo=kotlin&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot_3.3-6DB33F?style=flat-square&logo=springboot&logoColor=white)
 ![Spring Security](https://img.shields.io/badge/Spring_Security_+_JWT-6DB33F?style=flat-square&logo=springsecurity&logoColor=white)
